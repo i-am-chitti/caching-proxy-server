@@ -2,13 +2,20 @@
 
 import { program } from "commander";
 import startServer from "./server.js";
+import prisma from "./db.js";
+import fs from "fs";
 
 program.version('1.0.0').description('A caching proxy server');
 
 // Add command to clear the cache
 program.command('clear').description('Clear the cache').action(async () => {
     try {
+        // Clear the database
         await prisma.path.deleteMany();
+
+        // Remove the cache directory
+        fs.rmSync('cache', { recursive: true, force: true });
+
         console.log('Cache cleared');
     } catch (error) {
         console.error('Error clearing cache');
