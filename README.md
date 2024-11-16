@@ -11,6 +11,7 @@ caching-proxy start --port <number> --origin <url>
 ```
 
 `--port` is the port on which the caching proxy server will run.
+
 `--origin` is the URL of the server to which the requests will be forwarded.
 
 For example,
